@@ -69,7 +69,7 @@ export default class Api {
   //   }
 }
 export const apiCards = new Api({
-  url: "https://mesto.nomoreparties.co/v1/cohort-41",
+  url: 'http://api.solta.nomoredomains.sbs',
   headers: {
     authorization: "32ffaefa-9d9c-436d-9639-a2500716ba37",
     "Content-Type": "application/json",
