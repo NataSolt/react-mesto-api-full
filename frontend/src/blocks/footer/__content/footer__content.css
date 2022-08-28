@@ -1,0 +1,21 @@
+.footer__content {
+  color: #545454;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: normal;
+  margin: 0;
+}
+
+@media (max-width: 928px) {
+  .footer__content {
+    padding-left: 19px;
+  }
+}
+
+@media (max-width: 320px) {
+  .footer__content {
+    font-size: 14px;
+    line-height: 17px;
+    padding: 0;
+  }
+}

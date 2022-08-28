@@ -1,0 +1,15 @@
+.profile__container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin: 0;
+  justify-content: center;
+}
+
+@media (max-width: 320px) {
+  .profile__container {
+    max-width: 217px;
+    margin: 0 0 0 46px;
+  }
+}

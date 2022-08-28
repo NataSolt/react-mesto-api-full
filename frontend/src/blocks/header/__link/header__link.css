@@ -1,0 +1,25 @@
+.header__link {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-decoration: none;
+  padding: 6px 0 46px 0;
+  color: #ffffff;
+  align-self: center;
+}
+
+@media (max-width: 928px) {
+  .header__link {
+    padding-right: 19px;
+  }
+}
+
+@media (max-width: 320px) {
+.header__link {
+  font-size: 14px;
+  line-height: 17px;
+    padding: 0;
+    margin: 10px 0 20px 0;
+    justify-self: center;
+}
+}

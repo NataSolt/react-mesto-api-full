@@ -1,0 +1,30 @@
+.profile__avatar-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.5s ease-in-out;
+    position: relative;
+    border-radius: 50%;
+}
+
+
+.profile__avatar-container::after {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    content: "";
+    height: 100%;
+    opacity: 0.8;
+    position: absolute;
+    transition: opacity 0.5s ease-in-out;
+    width: 100%;
+  }
+  
+  .profile__avatar-container:hover::after {
+    background-color: rgba(0, 0, 0, 0.8);
+    background-image: url(../../../images/pencel.svg);
+    background-position: center;
+    border-radius: 50%;
+    
+  }

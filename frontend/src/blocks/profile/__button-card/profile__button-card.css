@@ -1,0 +1,33 @@
+.profile__button-card {
+  height: 50px;
+  width: 150px;
+  background-color: #000000;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  background-image: url(../../../images/pluse.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-left: auto;
+  align-self: center;
+  transition: opacity 0.3s ease;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.profile__button-card:hover {
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .profile__button-card {
+    margin: 0 auto;
+    width: 50%;
+  }
+}
+
+@media (max-width: 320px) {
+  .profile__button-card {
+    width: 282px;
+  }
+}

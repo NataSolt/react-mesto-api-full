@@ -1,0 +1,8 @@
+.header__link_out {
+  color: #a9a9a9;
+}
+
+.header__link_out:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}

@@ -1,0 +1,23 @@
+.cards {
+  max-width: 880px;
+  margin: 0 auto 68px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(282px, 282px));
+  grid-template-rows: 361px;
+  grid-column-gap: 17px;
+  grid-row-gap: 20px;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .cards {
+    max-width: 720px;
+  }
+}
+
+@media (max-width: 320px) {
+  .cards {
+    max-width: 282px;
+    margin-bottom: 48px;
+  }
+}
