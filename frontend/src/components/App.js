@@ -73,9 +73,9 @@ function App() {
 
   //проверка токена
   function tokenCheck() {
-    const token = localStorage.getItem("jwt");
-    if (token) {
-      checkToken(token)
+    //const token = localStorage.getItem("jwt");
+    //if (token) {
+      auth.checkToken()
         .then((res) => {
           if (res.data) {
             setUserEmail(res.data.email);
@@ -85,7 +85,7 @@ function App() {
         })
         .catch((arr) => alert(arr));
     }
-  }
+  //}
 
   useEffect(() => {
     tokenCheck();

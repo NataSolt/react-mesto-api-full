@@ -69,9 +69,9 @@ export default class Api {
   //   }
 }
 export const apiCards = new Api({
-  url: 'http://api.solta.nomoredomains.sbs',
+  url: 'http://api.solta.nomoredomains.sbs/',
   headers: {
-    authorization: "32ffaefa-9d9c-436d-9639-a2500716ba37",
+    //authorization: "32ffaefa-9d9c-436d-9639-a2500716ba37",
     "Content-Type": "application/json",
   },
 });
