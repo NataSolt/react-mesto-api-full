@@ -8,7 +8,7 @@ const auth = require('./middlewares/auth');
 const { validateLogin, validateCreateUser } = require('./middlewares/validator');
 const NotFound = require('./errors/notfound');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-// const { NOT_FOUND } = require('./statusError');
+// require('babel-polyfill');
 
 // Слушаем 3000 порт
 const { PORT = 3000 } = process.env;
