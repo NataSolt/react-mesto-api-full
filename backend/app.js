@@ -12,7 +12,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 // Слушаем 3000 порт
 const { PORT = 3000 } = process.env;
-require('dotenv').config();
+// require('dotenv').config();
 
 const app = express();
 app.use(cors());
