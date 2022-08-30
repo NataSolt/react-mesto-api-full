@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://api.solta.nomoredomains.sbs/';
+export const BASE_URL = 'https://api.solta.nomoredomains.sbs';
 
 const checkResponse = (res) => {
     if (res.ok) {
@@ -34,7 +34,7 @@ export const checkToken = (token) => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
+            'authorization': `Bearer ${token}`,
         }
     })
         .then(checkResponse)

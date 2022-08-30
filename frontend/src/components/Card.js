@@ -5,7 +5,6 @@ function Card(props) {
   const currentUser = React.useContext(CurrentUserContext);
   // являемся ли мы владельцем текущей карточки
   const isOwn = props.card.owner === currentUser._id;
-  console.log(props.card);
   // Определяем, есть ли у карточки лайк
   const isLiked = props.card.likes.some((i) => i === currentUser._id);
   // Создаём переменную, которая используется при удалении

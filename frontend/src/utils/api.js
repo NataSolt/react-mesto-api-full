@@ -42,7 +42,6 @@ export default class Api {
   }
 
   //отправка данных поль
-  debagger
   getUsers() {
     return fetch(`${this._url}/users/me`, {
       method: "GET",
@@ -73,7 +72,7 @@ export default class Api {
 const token = localStorage.getItem("jwt");
 
 export const apiCards = new Api({
-  url: 'http://api.solta.nomoredomains.sbs',
+  url: 'https://api.solta.nomoredomains.sbs',
   headers: {
   // authorization: "32ffaefa-9d9c-436d-9639-a2500716ba37",
     "Content-Type": "application/json",

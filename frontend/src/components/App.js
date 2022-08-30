@@ -170,7 +170,6 @@ function App() {
 
   function handleDeleteCard() {
     const cardId = deleteCard._id;
-    console.log(cardId)
     apiCards
       .deleteCard(cardId)
       .then(() => {
