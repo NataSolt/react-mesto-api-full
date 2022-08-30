@@ -7,12 +7,10 @@ const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { validateLogin, validateCreateUser } = require('./middlewares/validator');
 const NotFound = require('./errors/notfound');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
-// require('babel-polyfill');
+// const { NOT_FOUND } = require('./statusError');
 
 // Слушаем 3000 порт
 const { PORT = 3000 } = process.env;
-// require('dotenv').config();
 
 const app = express();
 app.use(cors());
@@ -27,14 +25,6 @@ mongoose
     family: 4,
   });
 
-app.use(requestLogger); // подключаем логгер запросов
-
-app.get('/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
-  }, 0);
-});
-
 app.post('/signin', validateLogin, login);
 app.post('/signup', validateCreateUser, createUser);
 
@@ -44,8 +34,6 @@ app.use('/cards', auth, require('./routes/cards'));
 app.use((req, res, next) => {
   next(new NotFound({ message: 'Запрашиваемый ресурс не найден' }));
 });
-
-app.use(errorLogger);
 
 app.use(errors()); // обработчик ошибок celebrate
 
