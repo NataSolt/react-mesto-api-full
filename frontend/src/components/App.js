@@ -37,7 +37,7 @@ function App() {
 
   //Регистрация пользователя
   function onRegister(email, password) {
-    register(password, email)
+    register(email, password)
       .then(() => {
         //Попап успешной регистрации
         setInfoTooltipImage(imageSuccess);
@@ -55,7 +55,7 @@ function App() {
 
   //Вход пользователя
   function onLogin(email, password) {
-    login(password, email)
+    login(email, password)
       .then((res) => {
         if (res.token) {
           setLoggedIn(true);
@@ -73,9 +73,9 @@ function App() {
 
   //проверка токена
   function tokenCheck() {
-    //const token = localStorage.getItem("jwt");
-    //if (token) {
-      auth.checkToken()
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      checkToken(token)
         .then((res) => {
           if (res.data) {
             setUserEmail(res.data.email);
@@ -85,7 +85,7 @@ function App() {
         })
         .catch((arr) => alert(arr));
     }
-  //}
+  }
 
   useEffect(() => {
     tokenCheck();
@@ -102,7 +102,9 @@ function App() {
     if (loggedIn) {
       apiCards
         .getUsers()
-        .then(setCurentUser)
+        .then((result)=> {
+          setCurentUser(result.data)
+        })
         .catch((arr) => alert(arr));
     }
   }, [loggedIn]);
@@ -112,7 +114,7 @@ function App() {
       apiCards
         .getCards()
         .then((result) => {
-          setCards(result);
+          setCards(result.data);
         })
         .catch((arr) => alert(arr));
     }
@@ -132,6 +134,7 @@ function App() {
     apiCards
       .patchAvatar(avatar)
       .then((result) => {
+
         setCurentUser(result);
         closeAllPopups();
       })
@@ -150,13 +153,13 @@ function App() {
 
   function handleCardLike(card) {
     // проверяем, есть ли уже лайк
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     apiCards
       .toggleLike(card._id, isLiked)
       .then((newCard) => {
         setCards((cards) =>
-          cards.map((c) => (c._id === card._id ? newCard : c))
-        );
+          cards.map((c) =>(c._id === card._id ? newCard : c))
+      );
       })
       .catch((arr) => alert(arr));
   }
@@ -167,6 +170,7 @@ function App() {
 
   function handleDeleteCard() {
     const cardId = deleteCard._id;
+    console.log(cardId)
     apiCards
       .deleteCard(cardId)
       .then(() => {
