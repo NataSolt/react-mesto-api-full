@@ -43,7 +43,7 @@ function App() {
         setInfoTooltipImage(imageSuccess);
         setMessage("Вы успешно зарегистрировались!");
         setInfoTooltipOpen(true);
-        history.push("/sign-in");
+        history.push("/signin");
       })
       .catch((err) => {
         setInfoTooltipImage(imageError);
@@ -59,6 +59,7 @@ function App() {
       .then((res) => {
         if (res.token) {
           setLoggedIn(true);
+          apiCards.setToken(res.token); // Передает в экземпляр класса Cards новое значение токена.
           localStorage.setItem("jwt", res.token);
           history.push("/");
         }
@@ -89,13 +90,14 @@ function App() {
 
   useEffect(() => {
     tokenCheck();
-  });
+  }, []);
 
   //Выход из системы, удаляем токен
   function logoutProfile() {
     localStorage.removeItem("jwt");
-    history.push("/sign-in");
+    history.push("/signin");
     setLoggedIn(false);
+    apiCards.setToken(null); // Передает в экземпляр класса Cards новое значение токена.
   }
 
   useEffect(() => {
@@ -105,7 +107,7 @@ function App() {
         .then((result)=> {
           setCurentUser(result.data)
         })
-        .catch((arr) => alert(arr));
+        .catch((arr) => console.log(arr));
     }
   }, [loggedIn]);
 
@@ -116,7 +118,7 @@ function App() {
         .then((result) => {
           setCards(result.data);
         })
-        .catch((arr) => alert(arr));
+        .catch((arr) => console.log(arr));
     }
   }, [loggedIn]);
 
@@ -127,7 +129,7 @@ function App() {
         setCurentUser(result);
         closeAllPopups();
       })
-      .catch((arr) => alert(arr));
+      .catch((arr) => console.log(arr));
   }
 
   function handleUpdateAvatar(avatar) {
@@ -138,7 +140,7 @@ function App() {
         setCurentUser(result);
         closeAllPopups();
       })
-      .catch((arr) => alert(arr));
+      .catch((arr) => console.log(arr));
   }
 
   function handleAddPlaceSubmit(card) {
@@ -237,16 +239,16 @@ function App() {
               loggedIn={loggedIn}
             />
 
-            <Route exact path="/sign-up">
+            <Route exact path="/signup">
               <Register onRegister={onRegister} />
             </Route>
 
-            <Route exact path="/sign-in">
+            <Route exact path="/signin">
               <Login onLogin={onLogin} />
             </Route>
 
             <Route>
-              {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
+              {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
             </Route>
           </Switch>
 
