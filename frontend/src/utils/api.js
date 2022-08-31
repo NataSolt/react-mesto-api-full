@@ -1,8 +1,21 @@
+
+
 export default class Api {
   constructor({ url, headers }) {
     this._url = url;
     this._headers = headers;
+    this._token = null;
   }
+
+  // Функция устанавливает новое значение токена
+  setToken(token) {
+    this._token = token;
+    this._headers = {
+      ...this._headers,
+      'authorization': `Bearer ${token}`
+    }
+  }
+
   //функция ошибки
   _checkResponse = (res) => {
     if (res.ok) {
@@ -69,13 +82,13 @@ export default class Api {
   //   }
 }
 
-const token = localStorage.getItem("jwt");
+let token = localStorage.getItem('jwt');
 
 export const apiCards = new Api({
   url: 'https://api.solta.nomoredomains.sbs',
   headers: {
   // authorization: "32ffaefa-9d9c-436d-9639-a2500716ba37",
     "Content-Type": "application/json",
-    'authorization': `Bearer ${token}`,
+  'authorization': `Bearer ${token}`,
   },
 });
