@@ -34,7 +34,7 @@ export const checkToken = (token) => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'authorization': "Bearer" + token,
+            'authorization': `Bearer ${token}`,
         }
     })
         .then(checkResponse)
