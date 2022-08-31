@@ -46,7 +46,7 @@ const [email, setEmail] = React.useState('');
         </form>
         <div className="form__block">
           <p className="form__paragraph">Уже зарегистрированы? </p>
-          <Link className="form__signin" to="/sign-in">
+          <Link className="form__signin" to="/signin">
             Войти
           </Link>
         </div>

@@ -22,14 +22,13 @@ import InfoTooltip from "./InfoToolTip";
 
 function App() {
   //user
-  const [currentUser, setCurentUser] = useState({});
-  const [cards, setCards] = useState([]);
+  const [currentUser, setCurentUser] = React.useState({});
+  const [cards, setCards] = React.useState([]);
   const [deleteCard, setDeleteCard] = React.useState(null);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [userEmail, setUserEmail] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [infoTooltipOpen, setInfoTooltipOpen] = useState(false);
   const [infoTooltipImage, setInfoTooltipImage] = useState(imageSuccess);
@@ -60,8 +59,8 @@ function App() {
       .then((res) => {
         if (res.token) {
           setLoggedIn(true);
+          apiCards.setToken(res.token); // Передает в экземпляр класса Cards новое значение токена.
           localStorage.setItem("jwt", res.token);
-          console.log(res.token)
           history.push("/");
         }
       })
@@ -80,7 +79,7 @@ function App() {
       checkToken(token)
         .then((res) => {
           if (res.data) {
-            setUserEmail(res.data.email);
+            setCurentUser(res.data);
             setLoggedIn(true);
             history.push("/");
           }
@@ -98,6 +97,8 @@ function App() {
     localStorage.removeItem("jwt");
     history.push("/signin");
     setLoggedIn(false);
+    setCurentUser({});
+    apiCards.setToken(null); // Передает в экземпляр класса Cards новое значение токена
   }
 
   useEffect(() => {
@@ -106,10 +107,11 @@ function App() {
         .getUsers()
         .then((result)=> {
           setCurentUser(result.data)
+          console.log(currentUser)
         })
         .catch((arr) => alert(arr));
     }
-  }, [loggedIn]);
+  }, [loggedIn, history]);
 
   useEffect(() => {
     if (loggedIn) {
@@ -120,7 +122,7 @@ function App() {
         })
         .catch((arr) => alert(arr));
     }
-  }, [loggedIn]);
+  }, [loggedIn, history]);
 
   function handleUpdateUser(data) {
     apiCards
@@ -213,7 +215,7 @@ function App() {
         <div className="container">
           <Header
             loggedIn={loggedIn}
-            userEmail={userEmail}
+            userEmail={currentUser.email}
             onSignOut={logoutProfile}
           />
           {/* <Main
@@ -240,7 +242,7 @@ function App() {
               loggedIn={loggedIn}
             />
 
-            <Route exact path="/sign-up">
+            <Route exact path="/signup">
               <Register onRegister={onRegister} />
             </Route>
 
