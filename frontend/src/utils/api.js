@@ -76,6 +76,6 @@ export const apiCards = new Api({
   headers: {
   // authorization: "32ffaefa-9d9c-436d-9639-a2500716ba37",
     "Content-Type": "application/json",
-    'Authorization': `Bearer ${token}`,
+    'authorization': `Bearer ${token}`,
   },
 });
