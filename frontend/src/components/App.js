@@ -57,9 +57,11 @@ function App() {
   function onLogin(email, password) {
     login(email, password)
       .then((res) => {
+        console.log(res.token)
         if (res.token) {
           setLoggedIn(true);
           localStorage.setItem("jwt", res.token);
+          console.log(res.token)
           history.push("/");
         }
       })
@@ -73,7 +75,7 @@ function App() {
 
   //проверка токена
   function tokenCheck() {
-    const token = localStorage.getItem("jwt");
+    let token = localStorage.getItem("jwt");
     if (token) {
       checkToken(token)
         .then((res) => {
@@ -86,10 +88,11 @@ function App() {
         .catch((arr) => alert(arr));
     }
   }
-
+  
   useEffect(() => {
     tokenCheck();
-  });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   //Выход из системы, удаляем токен
   function logoutProfile() {
@@ -203,6 +206,7 @@ function App() {
     setDeleteCard(null);
     setInfoTooltipOpen(false);
   }
+
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

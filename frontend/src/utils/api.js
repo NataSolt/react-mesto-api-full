@@ -69,7 +69,8 @@ export default class Api {
   //   }
 }
 
-const token = localStorage.getItem("jwt");
+let token = localStorage.getItem("jwt");
+console.log(token, "!")
 
 export const apiCards = new Api({
   url: 'https://api.solta.nomoredomains.sbs',
