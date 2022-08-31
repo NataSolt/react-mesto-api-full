@@ -7,7 +7,7 @@ const { CREATED } = require('../statusError');
 // возвращаем карточки
 module.exports.getCards = (req, res, next) => {
   Card.find({})
-    .then((cards) => res.send({ data: cards }))
+    .then((cards) => res.send({ data: cards.reverse() }))
     .catch(next);
 };
 
