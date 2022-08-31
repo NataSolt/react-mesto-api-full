@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { apiCards } from "../utils/api";
 import { useState, useEffect } from "react";
@@ -43,7 +44,7 @@ function App() {
         setInfoTooltipImage(imageSuccess);
         setMessage("Вы успешно зарегистрировались!");
         setInfoTooltipOpen(true);
-        history.push("/sign-in");
+        history.push("/signin");
       })
       .catch((err) => {
         setInfoTooltipImage(imageError);
@@ -57,7 +58,6 @@ function App() {
   function onLogin(email, password) {
     login(email, password)
       .then((res) => {
-        console.log(res.token)
         if (res.token) {
           setLoggedIn(true);
           localStorage.setItem("jwt", res.token);
@@ -91,13 +91,12 @@ function App() {
   
   useEffect(() => {
     tokenCheck();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //Выход из системы, удаляем токен
   function logoutProfile() {
     localStorage.removeItem("jwt");
-    history.push("/sign-in");
+    history.push("/signin");
     setLoggedIn(false);
   }
 
@@ -245,12 +244,12 @@ function App() {
               <Register onRegister={onRegister} />
             </Route>
 
-            <Route exact path="/sign-in">
+            <Route exact path="/signin">
               <Login onLogin={onLogin} />
             </Route>
 
             <Route>
-              {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
+              {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
             </Route>
           </Switch>
 
